@@ -7,13 +7,11 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Observer;
 
-public class Maze3dView extends abstractView {
+public class Maze3dViewCLI extends MyObservableCLIView {
 
-    private BufferedReader in;
-    private PrintWriter out;
-    Thread mainThread;
     
-    public Maze3dView(BufferedReader in, PrintWriter out) {
+    
+    public Maze3dViewCLI(BufferedReader in, PrintWriter out) {
 	super();
 	this.in = in;
 	this.out = out;
@@ -42,11 +40,6 @@ public class Maze3dView extends abstractView {
 	    }
 	});
 	mainThread.start();
-    }
-
-    public void addObservers2(Observer o) {
-	addObserver(o);
-	cm.addObserver(o);
     }
 
     public void displayByte(byte[] arr) {
