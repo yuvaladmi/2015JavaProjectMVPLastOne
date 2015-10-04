@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Observable;
 import java.util.Observer;
 
+import algorithms.mazeGenerators.Maze3d;
 import controller.Command;
 import model.Model;
 import view.View;
@@ -41,7 +42,9 @@ public class Presenter implements Observer {
 		    v.displayString(m.bringSolution(arr[arr.length - 1]));
 		    break;
 		default:
-		    v.displayByte(m.sendGame(arr[arr.length - 1]));
+		    Maze3d maze = m.sendGame(arr[arr.length - 1]);
+		    v.displayMaze(maze);
+		    v.displayPosition(maze.getStart());
 		    break;
 		}
 	    }
@@ -110,7 +113,6 @@ public class Presenter implements Observer {
 		    Command command;
 		    switch (temp[0]) {
 		    case "maze is ready":
-			System.out.println("case");
 			command = hCommands.get("display");
 			command.doCommand(("display maze " + temp[1]).split(" "));
 			break;

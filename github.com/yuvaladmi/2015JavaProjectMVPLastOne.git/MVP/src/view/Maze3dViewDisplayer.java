@@ -1,6 +1,5 @@
 package view;
 
-import org.eclipse.swt.events.KeyListener;
 import org.eclipse.swt.widgets.Canvas;
 import org.eclipse.swt.widgets.Composite;
 
@@ -9,18 +8,42 @@ import algorithms.mazeGenerators.Position;
 
 public abstract class Maze3dViewDisplayer extends Canvas {
 
-	protected Maze3d maze;
-	protected Position position;
-	
-	public Maze3dViewDisplayer(Composite parent, int style) {
-		super(parent, style);
-		position =new Position(0,0,0);
-	}
-	public void setMazeData(Maze3d m){
-		this.maze=m;
-	}
-	
-	
+    protected Maze3d maze;
+    protected Position position;
+    
+    public Maze3dViewDisplayer(Composite parent, int style) {
+	super(parent, style);
+	position = new Position(0, 0, 0);
+    }
 
+    public Maze3d getMaze() {
+        return maze;
+    }
+
+    public Position getPosition() {
+        return position;
+    }
+
+    public void setMazeData(Maze3d m) {
+	this.maze = m;
+	getDisplay().syncExec(new Runnable() {
+
+	    @Override
+	    public void run() {
+		redraw();
+	    }
+	});
+    }
+
+    public void setPositionData(Position p) {
+	this.position = p;
+	getDisplay().syncExec(new Runnable() {
+
+	    @Override
+	    public void run() {
+		redraw();
+	    }
+	});
+    }
 
 }

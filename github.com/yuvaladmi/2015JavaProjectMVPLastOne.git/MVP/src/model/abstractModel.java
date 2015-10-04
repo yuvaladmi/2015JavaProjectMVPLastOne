@@ -14,13 +14,14 @@ public abstract class abstractModel extends Observable implements Model {
     public ExecutorService threadpool;
     int numOfThread;
     public HashMap<String, Maze3d> hMaze;
-    public HashMap<String, Solution<Position>> hSol;
+    public HashMap<String, Position> hPosition;
+    public HashMap<Maze3d, Solution<Position>> hSol;
 
     public abstract void dirToPath(String[] arr);
 
     public abstract void generateMaze(String[] arr);
 
-    public abstract byte[] sendGame(String arr);
+    public abstract Maze3d sendGame(String arr);
 
     public abstract int[][] crossSection(String[] arr);
 

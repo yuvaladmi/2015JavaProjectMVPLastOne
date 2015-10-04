@@ -6,9 +6,9 @@ public class Properties implements Serializable {
 
 	String solvingAlgo;
 	int numOfThreads;
-	int maxX;
-	int maxY;
-	int maxZ;
+	int sizeX;
+	int sizeY;
+	int sizeZ;
 	int dimensions;
 	
 	public String getSolvingAlgo() {
@@ -23,23 +23,23 @@ public class Properties implements Serializable {
 	public void setNumOfThreads(int numOfThreads) {
 		this.numOfThreads = numOfThreads;
 	}
-	public int getMaxX() {
-		return maxX;
+	public int getSizeX() {
+		return sizeX;
 	}
-	public void setMaxX(int maxX) {
-		this.maxX = maxX;
+	public void setSizeX(int sizeX) {
+		this.sizeX = sizeX;
 	}
-	public int getMaxY() {
-		return maxY;
+	public int getSizeY() {
+		return sizeY;
 	}
-	public void setMaxY(int maxY) {
-		this.maxY = maxY;
+	public void setSizeY(int sizeY) {
+		this.sizeY = sizeY;
 	}
-	public int getMaxZ() {
-		return maxZ;
+	public int getSizeZ() {
+		return sizeZ;
 	}
-	public void setMaxZ(int maxZ) {
-		this.maxZ = maxZ;
+	public void setSizeZ(int sizeZ) {
+		this.sizeZ = sizeZ;
 	}
 	public int getDimensions() {
 		return dimensions;

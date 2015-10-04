@@ -5,16 +5,16 @@ import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Observer;
+
+import algorithms.mazeGenerators.Maze3d;
+import algorithms.mazeGenerators.Position;
 
 public class Maze3dViewCLI extends MyObservableCLIView {
 
     
     
     public Maze3dViewCLI(BufferedReader in, PrintWriter out) {
-	super();
-	this.in = in;
-	this.out = out;
+	super(in, out);
     }
 
     public void start() {
@@ -87,6 +87,23 @@ public class Maze3dViewCLI extends MyObservableCLIView {
     @Override
     public void exit() {
 	System.out.println("Server is safely closed");
+    }
+
+    @Override
+    public void notifyMessege(String[] arr) {
+	// TODO Auto-generated method stub
+	
+    }
+
+    @Override
+    public void displayMaze(Maze3d sendGame) {
+	System.out.println(sendGame);
+	
+    }
+
+    @Override
+    public void displayPosition(Position p) {
+	System.out.println(p);
     }
 
 }

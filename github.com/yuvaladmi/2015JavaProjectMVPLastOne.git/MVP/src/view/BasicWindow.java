@@ -1,63 +1,99 @@
 package view;
 
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.SelectionAdapter;
-import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.layout.GridData;
-import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.events.KeyListener;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Menu;
+import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.swt.widgets.Shell;
 
-public abstract class BasicWindow implements Runnable{
-	
-	Display display;
-	protected Shell shell;
-	
- 	public BasicWindow(String title, int width,int height) {
- 		display=new Display();
- 		shell  = new Shell(display);
- 		shell.setSize(width,height);
- 		shell.setText(title);
-	}
- 	
- 	public abstract void initWidgets();
+public abstract class BasicWindow implements Runnable {
 
-	@Override
-	public void run() {
-		initWidgets();
-		shell.open();
-		// main event loop
-		 while(!shell.isDisposed()){ // while window isn't closed
+    protected Display display;
+    protected Shell shell;
 
-		    // 1. read events, put then in a queue.
-		    // 2. dispatch the assigned listener
-		    if(!display.readAndDispatch()){ 	// if the queue is empty
-		       display.sleep(); 			// sleep until an event occurs 
-		    }
+    protected Menu menuBar, fileMenu, helpMenu;
+    protected MenuItem fileMenuHeader, helpMenuHeader;
+    protected MenuItem fileExitItem, fileSaveItem, helpGetHelpItem;
 
-		 } // shell is disposed
+    protected Label label;
+    protected KeyListener key;
+    protected SelectionListener generateListener;
+    protected SelectionListener solveListener;
+    protected SelectionListener exitListener;
 
-		 display.dispose(); // dispose OS components
-	}
-//	public static void main(String[] args) {
-//		BasicWindow bw = new BasicWindow("Hello",500,300) {
-//			
-//			@Override
-//			void initWidgets() {
-//				Button button = new Button(shell, SWT.PUSH);
-//				button.setLayoutData(new GridData(SWT.BEGINNING, SWT.CENTER, false, false));
-//				button.setText("Start");
-//				button.addSelectionListener(new SelectionAdapter() {
-//					@Override
-//					public void widgetSelected(SelectionEvent e) {
-//						
-//					}
-//				});
-//				
-//				
-//			}
-//		};
-//		bw.run;
-//	}
+    public SelectionListener getExitListener() {
+	return exitListener;
+    }
+
+    public void setExitListener(SelectionListener exitListener) {
+	this.exitListener = exitListener;
+    }
+
+    public KeyListener getKey() {
+	return key;
+    }
+
+    public void setKey(KeyListener key) {
+	this.key = key;
+    }
+
+    public SelectionListener getGenerateListener() {
+	return generateListener;
+    }
+
+    public void setGenerateListener(SelectionListener startKey) {
+	this.generateListener = startKey;
+    }
+
+    public SelectionListener getSolveListener() {
+	return solveListener;
+    }
+
+    public void setSolveListener(SelectionListener solveKey) {
+	this.solveListener = solveKey;
+    }
+
+    public BasicWindow(String title, int width, int height) {
+	display = new Display();
+	shell = new Shell(display);
+	shell.setSize(width, height);
+	shell.setText(title);
+    }
+
+    public abstract void initWidgets();
+
+    @Override
+    public void run() {
+	initWidgets();
+	shell.open();
+	// main event loop
+	while (!shell.isDisposed()) { // while window isn't closed
+
+	    // 1. read events, put then in a queue.
+	    // 2. dispatch the assigned listener
+	    if (!display.readAndDispatch()) { // if the queue is empty
+		display.sleep(); // sleep until an event occurs
+	    }
+
+	} // shell is disposed
+
+	display.dispose(); // dispose OS components
+    }
+
+    public abstract void moveUp();
+
+    public abstract void moveDown();
+
+    public abstract void moveLeft();
+
+    public abstract void moveRight();
+
+    public abstract void moveBackward();
+
+    public abstract void moveForward();
+    
+    public abstract void displayPopUp(String str);
 
 }
